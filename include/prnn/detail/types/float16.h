@@ -1,6 +1,7 @@
 #pragma once
 
 #include <prnn/detail/parallel/cuda.h>
+#include <cuda_fp16.h> // to fix the half float type errors
 
 #include <cstdint>
 #include <ostream>
