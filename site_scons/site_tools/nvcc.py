@@ -106,10 +106,10 @@ def add_nvcc_flags(env):
 
   arch = env['cuda_arch']
   if not arch:
-    arch = 'sm_30'
+    arch = 'sm_70'
 
   gencode = '-gencode=arch='+arch.replace("sm","compute")+',code='+arch
-  env.AppendUnique(NVCCFLAGS = gencode)
+  # env.AppendUnique(NVCCFLAGS = gencode)
 
   if platform.platform()[:6] == 'Darwin':
     if platform.machine()[-2:] == '64':
@@ -122,9 +122,12 @@ def add_nvcc_flags(env):
     pass
 
   env.AppendUnique(NVCCFLAGS = '-std=c++11')
-  env.AppendUnique(NVCCFLAGS = '-D CUDA_ARCH_MAJOR=' + get_architecture_major(arch))
+  env.AppendUnique(NVCCFLAGS = '-D CUDA_ARCH_MAJOR=7')
   env.AppendUnique(NVCCFLAGS = '-Xcompiler=-Wno-unused-function')
   env.AppendUnique(NVCCFLAGS = '-Xcompiler=-Wno-unused-private-field')
+  env.AppendUnique(NVCCFLAGS = '-gencode=arch=compute_70,code=sm_70')
+  env.AppendUnique(NVCCFLAGS = '-gencode=arch=compute_61,code=sm_61')
+ 
   #env.AppendUnique(NVCCFLAGS = '-Xcompiler=-Wno-unused-local-typedef')
 
 def cuda_exists(env):
