@@ -106,7 +106,7 @@ def add_nvcc_flags(env):
 
   arch = env['cuda_arch']
   if not arch:
-    arch = 'sm_70'
+    arch = 'sm_61'
 
   gencode = '-gencode=arch='+arch.replace("sm","compute")+',code='+arch
   # env.AppendUnique(NVCCFLAGS = gencode)
@@ -125,7 +125,7 @@ def add_nvcc_flags(env):
   env.AppendUnique(NVCCFLAGS = '-D CUDA_ARCH_MAJOR=7')
   env.AppendUnique(NVCCFLAGS = '-Xcompiler=-Wno-unused-function')
   env.AppendUnique(NVCCFLAGS = '-Xcompiler=-Wno-unused-private-field')
-  env.AppendUnique(NVCCFLAGS = '-gencode=arch=compute_70,code=sm_70')
+  # env.AppendUnique(NVCCFLAGS = '-gencode=arch=compute_70,code=sm_70')
   env.AppendUnique(NVCCFLAGS = '-gencode=arch=compute_61,code=sm_61')
  
   #env.AppendUnique(NVCCFLAGS = '-Xcompiler=-Wno-unused-local-typedef')
